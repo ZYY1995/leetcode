@@ -5,8 +5,11 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-
-        for i in range(0,len(nums) - 1):
-            for j in range(i + 1,len(nums)):
-                if target == nums[i] + nums[j]:
-                    return [i,j]
+        dic = {}
+        for i in range(0,len(nums)): 
+			dic[nums[i]] = i
+            
+		for i in range(0,len(nums)): 
+			tmp = target - nums[i]
+            if dic.has_key(tmp) and not dic[tmp] == i:
+                return [i,dic[tmp]]
