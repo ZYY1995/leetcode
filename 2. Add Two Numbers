@@ -15,6 +15,7 @@ class Solution(object):
         curr = result
         
         tmp = 0
+        pre_node = curr
         while(not l1 == None or not l2 == None):
             if l1 == None:
                 tmp = l2.val + tmp
@@ -22,19 +23,21 @@ class Solution(object):
                 tmp = l1.val + tmp
             else:
                 tmp = l1.val + l2.val + tmp
-                
-            l1.val = tmp % 10
-            l2.val = l1.val
+            
+            curr.val = tmp % 10
+            curr.next = ListNode(0)
+            pre_node = curr
+            curr = curr.next
+            
+            tmp = tmp // 10
+            
             if not l1 == None:
                 l1 = l1.next
             if not l2 == None:
                 l2 = l2.next
-            l1 = l1.next
-            l2 = l2.next
-            tmp = tmp // 10
+            
         if tmp == 1:
-                pre_node.next = ListNode(1)
-        if index == 1:       
-            return l1_head
+                curr.val = 1
         else:
-            return l2_head
+            pre_node.next = None
+        return result
