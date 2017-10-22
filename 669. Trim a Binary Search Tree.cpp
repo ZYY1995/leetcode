@@ -12,21 +12,14 @@ public:
     TreeNode* trimBST(TreeNode* root, int L, int R) {
         if (root == NULL)
             return NULL;
-        TreeNode* result = new TreeNode(0);
-        if(root->val >= L && root->val <= R)
-        {
-            result->val = root->val;
-            result->left = trimBST(root->left,L,R);
-            result->right = trimBST(root->right,L,R);
-        }
-        else
-        {
-            if(root->val < L)
-                result = trimBST(root->right,L,R);
-            else
-                result = trimBST(root->left,L,R);
-        }
-        return result;
+        if(root->val < L)
+            return trimBST(root->right,L,R);
+        else if(root->val > R)
+            return trimBST(root->left,L,R);
+        root->left = trimBST(root->left,L,R);
+        root->right = trimBST(root->right,L,R);
+        return root;
+
     }
 };
 
