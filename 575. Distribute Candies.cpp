@@ -2,20 +2,13 @@ class Solution {
 public:
     int distributeCandies(vector<int>& candies) {
         int num_kinds = 0;
-        int hashtable[200001] = {0};
+        bool hashtable[200001] = {false};
         for(int i = 0;i < candies.size();i++)
         {
-            num_kinds += hashtable[candies[i] + 100000] == 0;
-            hashtable[candies[i] + 100000]++;
+            num_kinds += hashtable[candies[i] + 100000] == false;
+            hashtable[candies[i] + 100000] = true;
         }
-        if(num_kinds > candies.size() / 2)
-        {
-            return candies.size() / 2;
-        }
-        else
-        {
-            return num_kinds;
-        }
+        return min((int)candies.size() / 2,num_kinds);
     }
 };
 
