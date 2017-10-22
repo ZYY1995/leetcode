@@ -1,11 +1,12 @@
 class Solution {
 public:
     string reverseString(string s) {
-        for(int i = 0;i < s.size() / 2;i++)
+        int i = 0,j = s.size() - 1;
+        while(i < j)
         {
-            char tmp = s[i];
-            s[i] = s[s.size() - 1 - i];
-            s[s.size() - 1 - i] = tmp;
+            swap(s[i],s[j]);
+            i++;
+            j--;
         }
         return s;
     }
