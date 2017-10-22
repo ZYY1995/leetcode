@@ -1,14 +1,14 @@
 class Solution {
 public:
     int findComplement(int num) {
-        int max = 0;
-        for(int i = 0;i < 32;i++)
-        {
-            if (num <= max)
-            {
-                return max - num;                
-            }
-            max = (max + 1) * 2 - 1;
-        }
+        int mask = ~0;
+        while(num & mask) mask <<= 1;
+        return ~mask & ~num;
     }
 };
+
+/*
+num          = 00000101
+mask         = 11111000
+~mask & ~num = 00000010
+*/
