@@ -1,32 +1,16 @@
 class Solution {
 public:
     vector<string> fizzBuzz(int n) {
-        vector<string> result;
-        int fizz = 0,buzz = 0;
+        vector<string> result(n);
         for(int i = 1; i <= n;i++)
         {
-            fizz++;
-            buzz++;
-            if(fizz == 3 && buzz == 5)
-            {
-                result.push_back("FizzBuzz");
-                fizz = 0;
-                buzz = 0;
-                continue;
-            }
-            if(fizz == 3)
-            {
-                result.push_back("Fizz");
-                fizz = 0;
-                continue;
-            }
-            if(buzz == 5)
-            {
-                result.push_back("Buzz");
-                buzz = 0;
-                continue;
-            }
-            result.push_back(to_string(i));
+            if(i%3 == 0)
+                result[i-1] += "Fizz";
+            if(i%5 == 0)          
+                result[i-1] += "Buzz";
+
+            if(i%3 && i%5)
+                result[i-1] += to_string(i);
         }
         return result;   
     }
